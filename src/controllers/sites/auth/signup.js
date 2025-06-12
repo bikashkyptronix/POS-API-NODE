@@ -5,6 +5,7 @@ import { customDateTimeHelper } from "../../../helpers/index.js";
 import { v4 as uuidv4 } from "uuid";
 import { User } from "../../../models/User.js";
 import { MAIL_TEMPLATE } from "../../../utils/constants.js";
+import mongoose from 'mongoose';
 
 /**
  * signup
@@ -32,10 +33,20 @@ export const signup = async (req, res, next) => {
       const userDetails = await userService.getByEmail(reqBody.email);
       if (userDetails) throw StatusError.badRequest("This email is already registered");
 
+      const existingPhoneUser = await User.findOne({ phone });
+      if (existingPhoneUser) {
+        throw StatusError.badRequest("This phone number is already registered");
+      }
+
       // Hash password (if using plain password)
       const bcrypt = await import("bcrypt");
       const saltRounds = 10;
       const password_hash = await bcrypt.hash(password, saltRounds);
+
+      const cleanedBusinessId =
+  business_id && mongoose.Types.ObjectId.isValid(business_id)
+    ? new mongoose.Types.ObjectId(business_id)
+    : null;
   
       // Create and save user
       const newUser = new User({
@@ -43,7 +54,7 @@ export const signup = async (req, res, next) => {
         email,
         password_hash,
         role,
-        business_id,
+        business_id: cleanedBusinessId,
         phone,
         address,
         status,
