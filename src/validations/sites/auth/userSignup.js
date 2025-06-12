@@ -3,8 +3,7 @@ import { validationHelper } from "../../../helpers/index.js";
 
 export const userSignup = celebrate({
   body: Joi.object({
-    first_name: Joi.string().trim().required(),
-    last_name: Joi.string().trim().required(),
+    full_name: Joi.string().trim().required(),
     email: Joi.string().email().lowercase().trim().required(),
     password: Joi.string().min(6).required(), // Plain password from request body
     role: Joi.string().valid("superadmin", "client", "staff").required(),

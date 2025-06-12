@@ -18,8 +18,7 @@ export const signup = async (req, res, next) => {
   try {
       const reqBody = req.body;
       const {
-        first_name,
-        last_name,
+        full_name,
         email,
         password, // plain password from body
         role,
@@ -40,8 +39,7 @@ export const signup = async (req, res, next) => {
   
       // Create and save user
       const newUser = new User({
-        first_name,
-        last_name,
+        full_name,
         email,
         password_hash,
         role,

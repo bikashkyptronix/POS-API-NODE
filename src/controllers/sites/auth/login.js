@@ -16,11 +16,11 @@ export const login = async (req, res, next) => {
 
     // 1. Get user by email using Mongoose
     const userDetails = await User.findOne({ email });
-    if (!userDetails) throw StatusError.badRequest({ email: res.__("email does not exist") });
+    if (!userDetails) throw StatusError.badRequest({ email: "email does not exist" });
 
     // 2. Compare password
     const isSame = await bcrypt.compare(password, userDetails.password_hash);
-    if (!isSame) throw StatusError.badRequest({ password: res.__("Password does not match") });
+    if (!isSame) throw StatusError.badRequest({ password: "Password does not match" });
 
     // 3. Generate JWT tokens
     const result = await userService.generateTokens(userDetails.email);

@@ -23,8 +23,6 @@ authRouter.get("/check-db",async(req,res)=>{
 });
 
 
-
-
 authRouter.post(
   "/signup",
   validateApiKey,
