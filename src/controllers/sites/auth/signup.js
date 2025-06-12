@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-//import { userService, userRoleService, emailService } from "../../../services/index.js";
+import { userService } from "../../../services/index.js";
 import { StatusError, envs } from "../../../config/index.js";
 import { customDateTimeHelper } from "../../../helpers/index.js";
 import { v4 as uuidv4 } from "uuid";
@@ -16,6 +16,7 @@ import { MAIL_TEMPLATE } from "../../../utils/constants.js";
 export const signup = async (req, res, next) => {
 
   try {
+      const reqBody = req.body;
       const {
         first_name,
         last_name,
@@ -29,6 +30,9 @@ export const signup = async (req, res, next) => {
         permissions,
       } = req.body;
   
+      const userDetails = await userService.getByEmail(reqBody.email);
+      if (userDetails) throw StatusError.badRequest("This email is already registered");
+
       // Hash password (if using plain password)
       const bcrypt = await import("bcrypt");
       const saltRounds = 10;
@@ -57,10 +61,10 @@ export const signup = async (req, res, next) => {
           user: newUser
         });
       } else {
-        throw StatusError.badRequest("serverError");
+       throw StatusError.badRequest(res.__("serverError"));
       }
+     
     } catch (error) {
-      console.error("Error creating user:", error);
-      res.status(500).json({ message: "Server error", error: error.message });
+      next(error);
     }
 };
