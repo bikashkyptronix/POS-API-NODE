@@ -2,8 +2,26 @@ import { Router } from "express";
 import { siteController } from "../../controllers/index.js";
 import { validateApiKey } from "../../middleware/index.js";
 import { siteValidation } from "../../validations/index.js";
+import mongoose from 'mongoose';
+
 
 const authRouter = Router();
+
+authRouter.get("/check-db",async(req,res)=>{
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+    console.log("✅ MongoDB connected successfully");
+    return res.status(200).json({message:"connected"});
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error);
+    return res.status(200).json({message:"db not connected"});
+
+  }
+});
+
 
 authRouter.post(
   "/signup",
