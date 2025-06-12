@@ -65,10 +65,6 @@ app.use("/api/v1", v1Router);
  */
 app.get("/", (_req, res) => res.send({ message: "Ok" }));
 
-setTimeout(()=>{
-app.get("/", (_req, res) => res.send({ message: "Ok" }));
-},60000);
-
 /**
  * 404 Route
  */
