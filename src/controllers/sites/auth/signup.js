@@ -70,7 +70,7 @@ export const signup = async (req, res, next) => {
           user: newUser
         });
       } else {
-       throw StatusError.badRequest(res.__("serverError"));
+       throw StatusError.badRequest("serverError");
       }
      
     } catch (error) {
