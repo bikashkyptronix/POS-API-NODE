@@ -2,7 +2,6 @@
 config/constant.js
 public/uploads
 package-lock.json
-.env
 logs
 public/download
 public
