@@ -34,7 +34,6 @@ export const login = async (req, res, next) => {
     // 5. Respond
     res.ok({
       user_id: userDetails._id,
-      username: userDetails.first_name + " " + userDetails.last_name,
       email: userDetails.email,
       user_type: userDetails.role,
       profile_image: userDetails.avatar || null,

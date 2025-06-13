@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { siteController } from "../../controllers/index.js";
-import { validateApiKey } from "../../middleware/index.js";
+import { validateApiKey, validateAccessToken } from "../../middleware/index.js";
 import { siteValidation } from "../../validations/index.js";
 import mongoose from 'mongoose';
 
@@ -68,6 +68,7 @@ authRouter.post(
 authRouter.post(
   "/change-password",
   validateApiKey,
+  validateAccessToken,
   siteValidation.authValidation.changePassword,
   siteController.authController.changePassword,
 );
