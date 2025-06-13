@@ -66,6 +66,13 @@ authRouter.post(
 );
 
 authRouter.post(
+  "/change-password",
+  validateApiKey,
+  siteValidation.authValidation.changePassword,
+  siteController.authController.changePassword,
+);
+
+authRouter.post(
   "/login",
   validateApiKey,
   siteValidation.authValidation.userLogin,

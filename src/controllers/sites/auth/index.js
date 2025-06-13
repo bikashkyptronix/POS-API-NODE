@@ -5,6 +5,7 @@ import { login } from "./login.js";
 import { sendVerificationCodeToEmail } from "./sendVerificationCode.js";
 import { checkVerificationCode } from "./checkVerificationCode.js";
 import { settingPassword } from "./settingPassword.js";
+import { changePassword } from "./changePassword.js";
 
 export {
   signup,
@@ -14,4 +15,5 @@ export {
   checkVerificationCode,
   login,
   settingPassword,
+  changePassword,
 };
