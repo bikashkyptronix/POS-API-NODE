@@ -20,10 +20,19 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["superadmin", "client", "staff"],
+      enum: ["superadmin","admin", "customer", "staff"],
       required: true,
     },
+    staff_position: {
+      type: String,
+      required: false,
+    },
     business_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Business",
+      default: null,
+    },
+    owner_business_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Business",
       default: null,
@@ -31,6 +40,10 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: String,
       trim: true,
+    },
+    date_of_birth: {
+      type: Date,
+      default: null,
     },
     address: {
       type: new mongoose.Schema(
@@ -52,6 +65,11 @@ const userSchema = new mongoose.Schema(
     permissions: {
       type: [String],
       default: [],
+    },
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
     },
   },
   {

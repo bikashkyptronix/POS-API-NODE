@@ -38,6 +38,7 @@ export const login = async (req, res, next) => {
       user_type: userDetails.role,
       profile_image: userDetails.avatar || null,
       token: result.access_token,
+      business_id: userDetails.business_id,
       token_expiry: result.access_token_expiry,
     });
   } catch (error) {

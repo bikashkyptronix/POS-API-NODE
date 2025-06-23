@@ -8,13 +8,13 @@ import { MAIL_TEMPLATE } from "../../../utils/constants.js";
 import mongoose from 'mongoose';
 
 /**
- * signup
- * User can signup with details
+ * employeeAdd
+ * employee details add
  * @param req
  * @param res
  * @param next
  */
-export const signup = async (req, res, next) => {
+export const employeeAdd = async (req, res, next) => {
 
   try {
       const reqBody = req.body;
@@ -23,6 +23,7 @@ export const signup = async (req, res, next) => {
         email,
         password, // plain password from body
         role,
+        staff_position,
         phone,
         address,
         status,
@@ -41,8 +42,6 @@ export const signup = async (req, res, next) => {
       const bcrypt = await import("bcrypt");
       const saltRounds = 10;
       const password_hash = await bcrypt.hash(password, saltRounds);
-
-      const cleanedBusinessId = new mongoose.Types.ObjectId(); // auto-generate
   
       // Create and save user
       const newUser = new User({
@@ -50,11 +49,13 @@ export const signup = async (req, res, next) => {
         email,
         password_hash,
         role,
-        business_id: cleanedBusinessId,
+        staff_position,
+        owner_business_id: req.userDetails.business_id,
         phone,
         address,
         status,
         permissions,
+        created_by: req.userDetails.userId,
       });
   
       const savedUser = await newUser.save();
@@ -62,7 +63,7 @@ export const signup = async (req, res, next) => {
       if(insertedId)
       {
           res.ok({
-          message: "User created successfully",
+          message: "Employee created successfully",
           user: newUser
         });
       } else {

@@ -13,4 +13,20 @@ userRouter.post(
   siteController.userController.test,
 );
 
+userRouter.post(
+  "/employee-add",
+  validateApiKey,
+  validateAccessToken,
+  siteValidation.userValidation.employeeAdd,
+  siteController.userController.employeeAdd,
+);
+
+userRouter.post(
+  "/employee-list",
+  validateApiKey,
+  validateAccessToken,
+  siteValidation.userValidation.employeeList,
+  siteController.userController.employeeList,
+);
+
 export { userRouter };
