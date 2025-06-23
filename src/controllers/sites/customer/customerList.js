@@ -22,7 +22,8 @@ export const customerList = async (req, res, next) => {
 
     // Optional: add search/filter conditions
     let condition = {
-      status: "active"
+      status: "active",
+      created_by: req.userDetails.userId
     };
 
     // Count total documents
