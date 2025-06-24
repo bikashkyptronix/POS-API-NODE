@@ -54,7 +54,7 @@ export const productAdd = async (req, res, next) => {
       {
           res.ok({
           message: "Product created successfully",
-          user: newProduct
+          product: newProduct
         });
       } else {
        throw StatusError.badRequest(res.__("serverError"));

@@ -3,6 +3,7 @@ import { generateRandomAlphanumeric } from "./generateRandomAlphanumeric.js";
 import { maskString } from "./maskString.js";
 import { getRandomNumbers } from "./getRandomNumbers.js";
 import { chartArrayFormat } from "./chartArrayFormat.js";
+import { slugCreation } from "./slugCreation.js";
 
 export {
   uuidv4,
@@ -10,5 +11,5 @@ export {
   maskString,
   getRandomNumbers,
   chartArrayFormat,
-  
+  slugCreation,
 };

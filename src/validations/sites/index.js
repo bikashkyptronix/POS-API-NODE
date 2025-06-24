@@ -3,6 +3,7 @@ import * as cmsValidation from "./cms/index.js";
 import * as userValidation from "./user/index.js";
 import * as productValidation from "./product/index.js";
 import * as customerValidation from "./customer/index.js";
+import * as commonValidation from "./common/index.js";
 
 
 export {
@@ -11,4 +12,5 @@ export {
   userValidation,
   productValidation,
   customerValidation,
+  commonValidation,
 };

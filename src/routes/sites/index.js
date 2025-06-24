@@ -3,6 +3,7 @@ import { authRouter } from "./auth.js";
 import { productRouter } from "./product.js"; 
 import { userRouter } from "./user.js";
 import { customerRouter } from "./customer.js";
+import { commonRouter } from "./common.js";
 import path from "path";
 import fs from "fs";
 
@@ -13,6 +14,7 @@ v1SiteRouter.use("/product", productRouter);
 v1SiteRouter.use("/auth", authRouter); 
 v1SiteRouter.use("/user", userRouter);
 v1SiteRouter.use("/customer", customerRouter);
+v1SiteRouter.use("/common", commonRouter);
 
 //end used for testing purpose
 export { v1SiteRouter };
