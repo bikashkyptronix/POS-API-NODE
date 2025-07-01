@@ -2,7 +2,8 @@ import { validateAccessToken } from "./accessToken.js";
 import { validateApiKey } from "./apiKey.js";
 import { accessTokenIfAny } from "./accessTokenIfAny.js";  
 import { productImageUpload } from "./multerUpload.js";
-import { profileImageUpload } from "./profileImageUpload.js";
+import { profileImageUpload } from "./profileImageUpload.js"; 
+import { businessImageUpload } from "./businessImageUpload.js";
 
 export {
   validateAccessToken,
@@ -10,4 +11,5 @@ export {
   accessTokenIfAny,
   productImageUpload,
   profileImageUpload,
+  businessImageUpload,
 };

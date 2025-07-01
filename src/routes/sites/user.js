@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { siteController } from "../../controllers/index.js";
-import { profileImageUpload, validateApiKey, validateAccessToken, accessTokenIfAny } from "../../middleware/index.js";
+import { profileImageUpload, businessImageUpload, validateApiKey, validateAccessToken, accessTokenIfAny } from "../../middleware/index.js";
 import { siteValidation } from "../../validations/index.js";
 
 const userRouter = Router();
@@ -35,6 +35,14 @@ userRouter.post(
   validateAccessToken,
   profileImageUpload.single("profile_image"), // multer middleware
   siteController.userController.updateProfileImage
+);
+
+userRouter.post(
+  "/update-business-logo",
+  validateApiKey,
+  validateAccessToken,
+  businessImageUpload.single("business_logo"), // multer middleware
+  siteController.userController.updateBusinessLogo
 );
 
 export { userRouter };

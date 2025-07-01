@@ -61,6 +61,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    business_logo: {
+      type: String,
+      default: null,
+    },
     status: {
       type: String,
       enum: ["active", "in-active"],
