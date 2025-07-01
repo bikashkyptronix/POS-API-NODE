@@ -38,7 +38,6 @@ export const categoryList = async (req, res, next) => {
 
     // Optional: format data
     const results = categories.map(data => {
-
     return {
         id: data._id,
         name: data.category_name,

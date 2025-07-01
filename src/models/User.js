@@ -57,6 +57,10 @@ const userSchema = new mongoose.Schema(
       ),
       default: {}
     },
+    profile_image: {
+      type: String,
+      default: null,
+    },
     status: {
       type: String,
       enum: ["active", "in-active"],
