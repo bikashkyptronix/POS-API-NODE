@@ -61,6 +61,9 @@ export const productUpdate = async (req, res, next) => {
     });
 
   } catch (error) {
+    if (error.code === 11000 && error.keyPattern?.product_sku) {
+        return res.status(400).json({ message: "Product SKU must be unique" });
+    }
     console.error(error);
     next(error);
   }
