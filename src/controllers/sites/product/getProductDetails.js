@@ -11,6 +11,7 @@ export const getProductDetails = async (req, res, next) => {
 
     const product = await Product.findOne({
       _id: productId,
+      status: "active",
       business_id: req.userDetails.business_id
     }).lean();
 
