@@ -64,4 +64,11 @@ userRouter.post(
   siteController.userController.employeeTaskAssign,
 );
 
+userRouter.get(
+  "/task-list/:id",
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.getEmployeeTaskList
+);
+
 export { userRouter };

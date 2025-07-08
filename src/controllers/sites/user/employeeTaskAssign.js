@@ -20,7 +20,7 @@ export const employeeTaskAssign = async (req, res, next) => {
       status,
     } = req.body;
 
-     const employeeExists = await User.findOne({
+    const employeeExists = await User.findOne({
       _id: employee_id,
       status: "active",
     });
