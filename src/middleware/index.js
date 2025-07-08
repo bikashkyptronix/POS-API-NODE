@@ -4,6 +4,7 @@ import { accessTokenIfAny } from "./accessTokenIfAny.js";
 import { productImageUpload } from "./multerUpload.js";
 import { profileImageUpload } from "./profileImageUpload.js"; 
 import { businessImageUpload } from "./businessImageUpload.js";
+import { employeeDocUpload } from "./employeeDocUpload.js";
 
 export {
   validateAccessToken,
@@ -12,4 +13,5 @@ export {
   productImageUpload,
   profileImageUpload,
   businessImageUpload,
+  employeeDocUpload,
 };

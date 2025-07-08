@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    staff_aadhar: {
+      type: String,
+      default: null
+    },
     business_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Business",

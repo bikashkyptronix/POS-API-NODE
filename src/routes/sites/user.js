@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { siteController } from "../../controllers/index.js";
-import { profileImageUpload, businessImageUpload, validateApiKey, validateAccessToken, accessTokenIfAny } from "../../middleware/index.js";
+import { profileImageUpload, businessImageUpload, employeeDocUpload, validateApiKey, validateAccessToken, accessTokenIfAny } from "../../middleware/index.js";
 import { siteValidation } from "../../validations/index.js";
 
 const userRouter = Router();
@@ -43,6 +43,25 @@ userRouter.post(
   validateAccessToken,
   businessImageUpload.single("business_logo"), // multer middleware
   siteController.userController.updateBusinessLogo
+);
+
+userRouter.post(
+  "/employee-document-update",
+  validateApiKey,
+  validateAccessToken,
+  employeeDocUpload.fields([
+    { name: "profile_image", maxCount: 1 },
+    { name: "aadhar_photo", maxCount: 1 },
+  ]),
+  siteController.userController.updateEmployeeDoc
+);
+
+userRouter.post(
+  "/employee-task-assign",
+  validateApiKey,
+  validateAccessToken,
+  siteValidation.userValidation.employeeTaskAssign,
+  siteController.userController.employeeTaskAssign,
 );
 
 export { userRouter };
