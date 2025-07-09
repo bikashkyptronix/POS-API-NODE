@@ -19,7 +19,6 @@ export const getProductDetails = async (req, res, next) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Optional: Format the response
     const result = {
       id: product._id,
       product_name: product.product_name,

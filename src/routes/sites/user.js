@@ -21,6 +21,13 @@ userRouter.post(
   siteController.userController.employeeAdd,
 );
 
+userRouter.get(
+  "/details/:id/:role",  // ID will come from URL
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.getUserDetails
+);
+
 userRouter.post(
   "/employee-list",
   validateApiKey,

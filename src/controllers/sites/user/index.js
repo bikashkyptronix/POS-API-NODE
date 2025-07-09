@@ -6,6 +6,7 @@ import { updateProfileImage } from "./updateProfileImage.js";
 import { updateBusinessLogo } from "./updateBusinessLogo.js"; 
 import { updateEmployeeDoc } from "./updateEmployeeDoc.js"; 
 import { employeeTaskAssign } from "./employeeTaskAssign.js"; 
-import { getEmployeeTaskList } from "./getEmployeeTaskList.js";
+import { getEmployeeTaskList } from "./getEmployeeTaskList.js"; 
+import { getUserDetails } from "./getUserDetails.js";
 
-export {  updateView, test, employeeList, employeeAdd, updateProfileImage, updateBusinessLogo, updateEmployeeDoc, employeeTaskAssign, getEmployeeTaskList };
+export {  updateView, test, employeeList, employeeAdd, updateProfileImage, updateBusinessLogo, updateEmployeeDoc, employeeTaskAssign, getEmployeeTaskList, getUserDetails };

@@ -36,13 +36,12 @@ export const customerList = async (req, res, next) => {
       .limit(pageSize)
       .lean(); // faster and returns plain JS objects
 
-    // Optional: format data
     const results = customers.map(customer => {
     const dob = customer.date_of_birth
         ? new Date(customer.date_of_birth).toLocaleDateString("en-US") // 👉 formats as MM/DD/YYYY
         : null;
 
-    return {
+    return { 
         id: customer._id,
         name: customer.customer_name,
         email: customer.customer_email,
@@ -53,7 +52,7 @@ export const customerList = async (req, res, next) => {
         address: customer.customer_address,
         sms_email_promotions: customer.sms_email_promotions,
         status: customer.status,
-    };
+      };
     });
 
     return res.ok({
