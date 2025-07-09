@@ -83,6 +83,11 @@ const userSchema = new mongoose.Schema(
       ref: "User",
       required: false,
     },
+    updated_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },

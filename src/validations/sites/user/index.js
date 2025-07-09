@@ -6,6 +6,8 @@ import { updateView } from "./updateView.js";
 import { testDatacheck } from "./testDatacheck.js";
 import { employeeList } from "./employeeList.js";
 import { employeeAdd } from "./employeeAdd.js"; 
-import { employeeTaskAssign } from "./employeeTaskAssign.js";
+import { employeeTaskAssign } from "./employeeTaskAssign.js"; 
+import { employeeUpdate } from "./employeeUpdate.js"; 
+import { employeeTaskUpdate } from "./employeeTaskUpdate.js";
 
-export { saveUserTheme, sharedDetails, favouriteAdd, ratingAdd, updateView, testDatacheck, employeeList, employeeAdd, employeeTaskAssign };
+export { saveUserTheme, sharedDetails, favouriteAdd, ratingAdd, updateView, testDatacheck, employeeList, employeeAdd, employeeTaskAssign, employeeUpdate, employeeTaskUpdate };

@@ -31,6 +31,11 @@ const employeeTaskSchema = new mongoose.Schema(
       enum: ["active", "in-active"],
       default: "active",
     },
+    updated_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
   },
   {
     timestamps: true, // adds createdAt and updatedAt fields

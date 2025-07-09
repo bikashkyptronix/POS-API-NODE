@@ -17,8 +17,18 @@ userRouter.post(
   "/employee-add",
   validateApiKey,
   validateAccessToken,
+  employeeDocUpload.single("profile_image"), 
   siteValidation.userValidation.employeeAdd,
   siteController.userController.employeeAdd,
+);
+
+userRouter.post(
+  "/employee-update/:id", // Employee ID in URL
+  validateApiKey,
+  validateAccessToken,
+  employeeDocUpload.single("profile_image"), 
+  siteValidation.userValidation.employeeUpdate,
+  siteController.userController.employeeUpdate
 );
 
 userRouter.get(
@@ -69,6 +79,14 @@ userRouter.post(
   validateAccessToken,
   siteValidation.userValidation.employeeTaskAssign,
   siteController.userController.employeeTaskAssign,
+);
+
+userRouter.post(
+  "/employee-task-update/:id", // Employee ID in URL
+  validateApiKey,
+  validateAccessToken,
+  siteValidation.userValidation.employeeTaskUpdate,
+  siteController.userController.employeeTaskUpdate
 );
 
 userRouter.get(
