@@ -24,4 +24,20 @@ commonRouter.post(
    siteController.commonController.categoryList,
 );
 
+commonRouter.post(
+  "/fuel-update",
+   validateApiKey,
+   validateAccessToken, 
+   siteValidation.commonValidation.fuelUpdate,
+   siteController.commonController.fuelUpdate,
+);
+
+commonRouter.post(
+  "/fuel-list",
+   validateApiKey,
+   validateAccessToken, 
+   siteValidation.commonValidation.fuelList,
+   siteController.commonController.fuelList,
+);
+
 export { commonRouter };
