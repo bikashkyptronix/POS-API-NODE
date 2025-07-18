@@ -52,15 +52,18 @@ export const productAdd = async (req, res, next) => {
       const insertedId = savedProduct._id;
       if(insertedId)
       {
-          res.ok({
+        res.ok({
           message: "Product created successfully",
           product: newProduct
         });
       } else {
        throw StatusError.badRequest(res.__("serverError"));
       }
-     
     } catch (error) {
+      if (error.code === 11000 && error.keyPattern?.product_sku) {
+        return res.status(400).json({ message: "Product SKU must be unique" });
+      }
+      console.error(error);
       next(error);
     }
 };

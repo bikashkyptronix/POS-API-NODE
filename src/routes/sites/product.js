@@ -18,4 +18,35 @@ productRouter.post(
    siteController.productController.productAdd,
 );
 
+productRouter.post(
+  "/update/:id", // Product ID in URL
+  validateApiKey,
+  validateAccessToken,
+  productImageUpload.single("product_image"),
+  siteValidation.productValidation.productUpdate,
+  siteController.productController.productUpdate
+);
+
+productRouter.get(
+  "/details/:id",  // ID will come from URL
+  validateApiKey,
+  validateAccessToken,
+  siteController.productController.getProductDetails
+);
+
+productRouter.get(
+  "/delete/:id",  // ID in URL param
+  validateApiKey,
+  validateAccessToken,
+  siteController.productController.deleteProduct
+);
+
+productRouter.post(
+  "/list",
+   validateApiKey,
+   validateAccessToken,   
+   siteValidation.productValidation.productList,
+   siteController.productController.productList,
+);
+
 export { productRouter };

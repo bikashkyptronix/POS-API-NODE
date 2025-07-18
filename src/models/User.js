@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    staff_aadhar: {
+      type: String,
+      default: null
+    },
     business_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Business",
@@ -57,6 +61,14 @@ const userSchema = new mongoose.Schema(
       ),
       default: {}
     },
+    profile_image: {
+      type: String,
+      default: null,
+    },
+    business_logo: {
+      type: String,
+      default: null,
+    },
     status: {
       type: String,
       enum: ["active", "in-active"],
@@ -67,6 +79,11 @@ const userSchema = new mongoose.Schema(
       default: [],
     },
     created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
+    updated_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: false,
