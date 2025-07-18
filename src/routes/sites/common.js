@@ -40,4 +40,12 @@ commonRouter.post(
    siteController.commonController.fuelList,
 );
 
+commonRouter.post(
+  "/fuel-list-csv",
+  validateApiKey,
+  validateAccessToken,
+  siteController.commonController.fuelListCSV,
+);
+
+
 export { commonRouter };
