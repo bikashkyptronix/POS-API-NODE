@@ -47,5 +47,34 @@ commonRouter.post(
   siteController.commonController.fuelListCSV,
 );
 
+commonRouter.post(
+  "/device-add",
+   validateApiKey,
+   validateAccessToken, 
+   siteValidation.commonValidation.deviceAdd,
+   siteController.commonController.deviceAdd,
+);
+
+commonRouter.post(
+  "/device-list",
+   validateApiKey,
+   validateAccessToken, 
+   siteValidation.commonValidation.deviceList,
+   siteController.commonController.deviceList,
+);
+
+commonRouter.get(
+  "/device-details/:id",  // ID will come from URL
+  validateApiKey,
+  validateAccessToken,
+  siteController.commonController.getDeviceDetails
+);
+
+commonRouter.get(
+  "/device-delete/:id",  // ID in URL param
+  validateApiKey,
+  validateAccessToken,
+  siteController.commonController.deleteDevice
+);
 
 export { commonRouter };
