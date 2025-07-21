@@ -4,12 +4,13 @@ export const deleteDevice = async (req, res, next) => {
   try {
     const deviceId = req.params.id;
 
-    const findDevice = await Device.findOne({
+   const getDevice = await Device.findOne({
       _id: deviceId,
+      status: "active",
       business_id: req.userDetails.business_id
-    });
+    }).lean();
 
-    if (!findDevice) {
+    if (!getDevice) {
       return res.status(404).json({ message: "Device not found" });
     }
 
