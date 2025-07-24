@@ -17,7 +17,7 @@ export const employeeTaskAssign = async (req, res, next) => {
       task_details,
       task_deadline,
       created_by,
-      status,
+      task_status,
     } = req.body;
 
     const employeeExists = await User.findOne({
@@ -34,8 +34,9 @@ export const employeeTaskAssign = async (req, res, next) => {
       task_title,
       task_details,
       task_deadline: task_deadline || null,
+      business_id: req.userDetails.business_id || null,
       created_by: created_by || req.userDetails.userId,
-      status: status || "active",
+      task_status: task_status || "pending",
     });
 
     const savedTask = await task.save();

@@ -8,6 +8,7 @@ export const employeeTaskAssign = celebrate({
     task_details: Joi.string().required(), // Plain password from request body
     task_deadline: Joi.date().optional().allow(null, ''),
     created_by: Joi.string().optional().allow(null),
-    status: Joi.string().valid("active", "in-active").optional(),
+    task_status: Joi.string().valid("pending", "on-going", "defer", "completed").optional(),
+    //status: Joi.string().valid("active", "in-active").optional(),
   }),
 });

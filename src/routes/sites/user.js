@@ -81,6 +81,13 @@ userRouter.post(
   siteController.userController.employeeTaskAssign,
 );
 
+userRouter.get(
+  "/employee-task-details/:id",  // ID will come from URL
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.employeeTaskDetails
+);
+
 userRouter.post(
   "/employee-task-update/:id", // Employee ID in URL
   validateApiKey,
@@ -89,11 +96,32 @@ userRouter.post(
   siteController.userController.employeeTaskUpdate
 );
 
-userRouter.get(
-  "/task-list/:id",
+userRouter.post(
+  "/task-list",
   validateApiKey,
   validateAccessToken,
   siteController.userController.getEmployeeTaskList
+);
+
+userRouter.get(
+  "/task-delete/:id",  // ID in URL param 
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.deleteEmployeeTask
+);
+
+userRouter.post(
+  "/comment-on-task",
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.taskComment
+);
+
+userRouter.post(
+  "/comment-list",
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.getTaskCommentList
 );
 
 export { userRouter };

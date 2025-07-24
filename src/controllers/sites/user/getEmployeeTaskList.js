@@ -15,16 +15,16 @@ import { MAIL_TEMPLATE } from "../../../utils/constants.js";
  */
 export const getEmployeeTaskList = async (req, res, next) => {
   try {
+
     const { page = 1, limit = 2 } = req.body;
 
     const pageNumber = parseInt(page);
     const pageSize = parseInt(limit);
-    const employeeId = req.params.id;
 
     // Optional: add search/filter conditions
     let condition = {
       status: "active",
-      employee_id: employeeId,
+      business_id: req.userDetails.business_id
     };
 
     // Count total documents
@@ -42,17 +42,17 @@ export const getEmployeeTaskList = async (req, res, next) => {
 
     // Optional: format data
     const results = employeeTasks.map(data => {
-    const task_deadline = data.task_deadline
-        ? new Date(data.task_deadline).toLocaleDateString("en-US") // 👉 formats as MM/DD/YYYY
-        : null;
+      const task_deadline = data.task_deadline
+          ? new Date(data.task_deadline).toLocaleDateString("en-US") // 👉 formats as MM/DD/YYYY
+          : null;
 
-    return {
-        id: data._id,
-        title: data.task_title,
-        task_details: data.task_details,
-        task_deadline: task_deadline,
-        status: data.status,
-    };
+      return {
+          id: data._id,
+          title: data.task_title,
+          task_details: data.task_details,
+          task_deadline: task_deadline,
+          task_status: data.task_status,
+      };
     });
 
     return res.ok({

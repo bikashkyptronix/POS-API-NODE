@@ -21,14 +21,24 @@ const employeeTaskSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    business_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Business",
+        default: null,
+    },
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", // optional reference to admin/manager
       default: null,
     },
+    task_status: {
+      type: String,
+      enum: ["pending", "on-going", "defer", "completed"],
+      default: "pending",
+    },
     status: {
       type: String,
-      enum: ["active", "in-active"],
+      enum: ["active", "inactive"],
       default: "active",
     },
     updated_by: {

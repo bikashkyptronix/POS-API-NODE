@@ -25,7 +25,7 @@ export const validateAccessToken = async (req, res, next) => {
       userId: userDetails._id,
       name: userDetails.full_name,
       email: userDetails.email,
-      business_id: userDetails.business_id,
+      business_id: userDetails.business_id ? userDetails.business_id : userDetails.owner_business_id,
       //user_type: userRole.role_name,
       //user_role_id: userRole.role_id,
     };
