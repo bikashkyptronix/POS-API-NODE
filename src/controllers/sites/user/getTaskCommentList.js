@@ -13,7 +13,8 @@ export const getTaskCommentList = async (req, res, next) => {
     const pageSize = parseInt(limit);
 
     if (!task_id) {
-      throw new StatusError("task_id is required", 400);
+      //throw new StatusError("task_id is required", 400);
+      return res.status(400).json({ message: "task_id is required" });
     }
 
     const condition = {
