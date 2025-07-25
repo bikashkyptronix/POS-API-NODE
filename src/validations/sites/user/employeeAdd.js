@@ -14,7 +14,7 @@ export const employeeAdd = celebrate({
       street: Joi.string().required(),
       city: Joi.string().required(),
       state: Joi.string().required(),
-      zip: Joi.string().pattern(/^\d{5}$/).required(), // or Joi.string().required()
+      zip: Joi.string().pattern(/^\d{6}$/).required(), // or Joi.string().required()
     }).optional(),
     created_by: Joi.string().optional().allow(null),
     status: Joi.string().valid("active", "in-active").optional(),
