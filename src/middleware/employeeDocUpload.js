@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 
 // Ensure folder exists
-const userImageDir = "./uploads/employee-photo";
+const userImageDir = "public/uploads/employee-photo";
 if (!fs.existsSync(userImageDir)) {
   fs.mkdirSync(userImageDir, { recursive: true });
 }

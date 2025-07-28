@@ -3,14 +3,14 @@ import path from "path";
 import fs from "fs";
 
 // Ensure folder exists
-const userImageDir = "./uploads/users";
+const userImageDir = "public/uploads/users";
 if (!fs.existsSync(userImageDir)) {
   fs.mkdirSync(userImageDir, { recursive: true });
 }
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/users");
+    cb(null, "public/uploads/users");
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname);
