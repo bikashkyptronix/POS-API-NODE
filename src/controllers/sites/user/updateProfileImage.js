@@ -3,6 +3,7 @@ import { User } from "../../../models/User.js";
 export const updateProfileImage = async (req, res, next) => {
   try {
     const userId = req.userDetails.userId;
+    console.log('userId==',userId);
 
     if (!req.file) {
       return res.status(400).json({ message: "Profile image is required" });
