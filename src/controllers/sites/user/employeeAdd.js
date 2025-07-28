@@ -25,6 +25,7 @@ export const employeeAdd = async (req, res, next) => {
         role,
         staff_position,
         phone,
+        date_of_birth,
         address,
         status,
         permissions,
@@ -52,6 +53,7 @@ export const employeeAdd = async (req, res, next) => {
         staff_position,
         owner_business_id: req.userDetails.business_id,
         phone,
+        date_of_birth,
         address,
         status,
         permissions,
@@ -67,6 +69,7 @@ export const employeeAdd = async (req, res, next) => {
           user: newUser
         });
       } else {
+        console.log(error);
        throw StatusError.badRequest("serverError");
       }
      

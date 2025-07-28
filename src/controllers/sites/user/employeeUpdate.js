@@ -24,6 +24,7 @@ export const employeeUpdate = async (req, res, next) => {
       role,
       staff_position,
       phone,
+      date_of_birth,
       address,
       status,
       permissions,
@@ -59,6 +60,7 @@ export const employeeUpdate = async (req, res, next) => {
     user.role = role;
     user.staff_position = staff_position;
     user.phone = phone;
+    user.date_of_birth = date_of_birth;
     user.address = address;
     user.status = status;
     user.permissions = permissions;
