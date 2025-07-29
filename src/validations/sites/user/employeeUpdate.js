@@ -13,7 +13,7 @@ export const employeeUpdate = celebrate({
       street: Joi.string().required(),
       city: Joi.string().required(),
       state: Joi.string().required(),
-      zip: Joi.string().pattern(/^\d{5}$/).required(), // or Joi.string().required()
+      zip: Joi.string().pattern(/^\d{6}$/).required(), // or Joi.string().required()
     }).optional()
   }),
 });
