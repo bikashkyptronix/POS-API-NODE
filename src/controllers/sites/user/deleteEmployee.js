@@ -6,6 +6,7 @@ export const deleteEmployee = async (req, res, next) => {
 
     const employee = await User.findOne({
       _id: employeeId,
+      status: "active",
       role: "staff",
       owner_business_id: req.userDetails.business_id
     });
