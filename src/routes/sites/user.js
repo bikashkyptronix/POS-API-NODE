@@ -46,6 +46,13 @@ userRouter.post(
   siteController.userController.employeeList,
 );
 
+userRouter.get(
+  "/employee-delete/:id",  // ID in URL param
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.deleteEmployee
+);
+
 userRouter.post(
   "/update-profile-image",
   validateApiKey,
