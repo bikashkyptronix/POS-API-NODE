@@ -26,7 +26,6 @@ export const employeeUpdate = async (req, res, next) => {
       phone,
       date_of_birth,
       address,
-      status,
       permissions,
     } = req.body;
 
@@ -62,7 +61,6 @@ export const employeeUpdate = async (req, res, next) => {
     user.phone = phone;
     user.date_of_birth = date_of_birth;
     user.address = address;
-    user.status = status;
     user.permissions = permissions;
     user.updated_by = req.userDetails.userId;
 
