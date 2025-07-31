@@ -40,6 +40,13 @@ commonRouter.post(
    siteController.commonController.fuelList,
 );
 
+commonRouter.get(
+  "/last-fuel-details",
+  validateApiKey,
+  validateAccessToken,
+  siteController.commonController.lastFuelDetails
+);
+
 commonRouter.post(
   "/fuel-list-csv",
   validateApiKey,
