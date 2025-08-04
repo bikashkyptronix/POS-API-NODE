@@ -14,6 +14,7 @@ export const employeeUpdate = celebrate({
       city: Joi.string().required(),
       state: Joi.string().required(),
       zip: Joi.string().pattern(/^\d{6}$/).required(), // or Joi.string().required()
-    }).optional()
+    }).optional(),
+    status: Joi.string().valid("active", "inactive").optional(),
   }),
 });

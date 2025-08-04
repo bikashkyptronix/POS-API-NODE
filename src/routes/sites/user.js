@@ -54,6 +54,13 @@ userRouter.get(
 );
 
 userRouter.post(
+  "/bulk-employee-delete",
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.bulkDeleteEmployee,
+);
+
+userRouter.post(
   "/update-profile-image",
   validateApiKey,
   validateAccessToken,

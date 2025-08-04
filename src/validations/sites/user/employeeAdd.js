@@ -17,7 +17,7 @@ export const employeeAdd = celebrate({
       zip: Joi.string().pattern(/^\d{6}$/).required(), // or Joi.string().required()
     }).optional(),
     created_by: Joi.string().optional().allow(null),
-    status: Joi.string().valid("active", "in-active").optional(),
+    status: Joi.string().valid("active", "inactive").optional(),
     permissions: Joi.array().items(Joi.string()).optional(),
   }),
 });

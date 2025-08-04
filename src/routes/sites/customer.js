@@ -24,4 +24,18 @@ customerRouter.post(
    siteController.customerController.customerList,
 );
 
+customerRouter.get(
+  "/delete/:id",  // ID in URL param
+  validateApiKey,
+  validateAccessToken,
+  siteController.customerController.deleteCustomer
+);
+
+customerRouter.post(
+  "/bulk-delete",
+  validateApiKey,
+  validateAccessToken,
+  siteController.customerController.bulkDeleteCustomer
+);
+
 export { customerRouter };
