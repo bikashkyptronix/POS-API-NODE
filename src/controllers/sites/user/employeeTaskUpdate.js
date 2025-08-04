@@ -17,6 +17,7 @@ export const employeeTaskUpdate = async (req, res, next) => {
       task_title,
       task_details,
       task_deadline,
+      task_status,
       status,
     } = req.body;
 
@@ -34,6 +35,7 @@ export const employeeTaskUpdate = async (req, res, next) => {
     existingTask.task_title = task_title || existingTask.task_title;
     existingTask.task_details = task_details || existingTask.task_details;
     existingTask.task_deadline = task_deadline || existingTask.task_deadline;
+    existingTask.task_status = task_status || existingTask.task_status;
     existingTask.status = status || existingTask.status;
     existingTask.updated_by = req.userDetails.userId;
 
