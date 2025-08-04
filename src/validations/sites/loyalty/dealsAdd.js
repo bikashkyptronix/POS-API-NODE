@@ -2,7 +2,7 @@ import { celebrate, Joi, Segments } from "celebrate";
 
 export const dealsAdd = celebrate({
   [Segments.BODY]: Joi.object({
-    item_name: Joi.string().trim().required(),
+    item_id: Joi.string().trim().required(),
     // promocode: only digits allowed, leading zeros preserved
     promocode: Joi.string()
       .pattern(/^\d+$/)

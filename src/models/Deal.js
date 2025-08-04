@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const dealSchema = new mongoose.Schema(
   {
-    item_name: {
-      type: String,
+    item_id: {   
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       trim: true,
     },

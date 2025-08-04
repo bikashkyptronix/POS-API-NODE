@@ -4,7 +4,9 @@ import { StatusError, envs } from "../../../config/index.js";
 import { customDateTimeHelper } from "../../../helpers/index.js";
 import { v4 as uuidv4 } from "uuid";
 import { Deal } from "../../../models/Deal.js";
+import { Product } from "../../../models/Product.js";
 import { MAIL_TEMPLATE } from "../../../utils/constants.js";
+import mongoose from "mongoose";
 
 /**
  * dealsUpdate
@@ -24,7 +26,7 @@ export const dealsUpdate = async (req, res, next) => {
 
     const dealId = req.params.id;
     const {
-      item_name,
+      item_id,
       promocode,
       from_date,
       to_date,
@@ -34,6 +36,15 @@ export const dealsUpdate = async (req, res, next) => {
       status
     } = req.body;
 
+    const existingProduct = await Product.findOne({
+        _id: mongoose.Types.ObjectId.createFromHexString(item_id),
+        status: "active"
+      });
+  
+      if (!existingProduct) {
+        return res.status(404).json({ message: "Selected Item not found" });
+      }
+      
     const existingDeal = await Deal.findOne({
       _id: dealId,
       business_id: req.userDetails.business_id
@@ -44,7 +55,7 @@ export const dealsUpdate = async (req, res, next) => {
     }
 
     // Update fields
-    existingDeal.item_name = item_name;
+    existingDeal.item_id = item_id;
     existingDeal.promocode = promocode;
     existingDeal.from_date= convertToDate(req.body.from_date);
     existingDeal.to_date= convertToDate(req.body.to_date);
