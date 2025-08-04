@@ -52,6 +52,8 @@ export const customerList = async (req, res, next) => {
         address: customer.customer_address,
         sms_email_promotions: customer.sms_email_promotions,
         status: customer.status,
+        createdAt: customer.createdAt,
+        updatedAt: customer.updatedAt,
       };
     });
 

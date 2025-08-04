@@ -125,6 +125,13 @@ userRouter.get(
 );
 
 userRouter.post(
+  "/bulk-task-delete",
+  validateApiKey,
+  validateAccessToken,
+  siteController.userController.bulkDeleteEmployeeTask
+);
+
+userRouter.post(
   "/comment-on-task",
   validateApiKey,
   validateAccessToken,

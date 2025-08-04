@@ -52,7 +52,9 @@ export const employeeList = async (req, res, next) => {
         dob: dob,
         address: data.address,
         status: data.status,
-    };
+        createdAt: data.created_at,
+        updatedAt: data.updated_at,
+      };
     });
 
     return res.ok({

@@ -52,6 +52,8 @@ export const getEmployeeTaskList = async (req, res, next) => {
           task_details: data.task_details,
           task_deadline: task_deadline,
           task_status: data.task_status,
+          createdAt: data.createdAt,
+          updatedAt: data.updatedAt,
       };
     });
 

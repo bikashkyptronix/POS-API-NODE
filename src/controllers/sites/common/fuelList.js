@@ -5,6 +5,11 @@ import { customDateTimeHelper } from "../../../helpers/index.js";
 import { v4 as uuidv4 } from "uuid";
 import { Fuel } from "../../../models/Fuel.js";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js";
+import timezone from "dayjs/plugin/timezone.js";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 /**
  * fuelList
@@ -38,7 +43,8 @@ export const fuelList = async (req, res, next) => {
 
     // Optional: format data
     const results = getData.map(data => {
-        const createdAt = dayjs(data.created_at);
+        const createdAt = dayjs(data.created_at).utc().tz("Asia/Kolkata");
+        const formattedTime = createdAt.format("hh:mm A");
         return {
             id: data._id,
             business_id: data.business_id,

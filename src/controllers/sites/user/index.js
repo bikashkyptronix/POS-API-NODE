@@ -16,5 +16,6 @@ import { taskComment } from "./taskComment.js";
 import { getTaskCommentList } from "./getTaskCommentList.js";
 import { deleteEmployee } from "./deleteEmployee.js"; 
 import { bulkDeleteEmployee } from "./bulkDeleteEmployee.js";
+import { bulkDeleteEmployeeTask } from "./bulkDeleteEmployeeTask.js";
 
-export {  updateView, test, employeeList, employeeAdd, updateProfileImage, updateBusinessLogo, updateEmployeeDoc, employeeTaskAssign, getEmployeeTaskList, getUserDetails, employeeUpdate, employeeTaskUpdate, employeeTaskDetails, deleteEmployeeTask, taskComment, getTaskCommentList, deleteEmployee, bulkDeleteEmployee };
+export {  updateView, test, employeeList, employeeAdd, updateProfileImage, updateBusinessLogo, updateEmployeeDoc, employeeTaskAssign, getEmployeeTaskList, getUserDetails, employeeUpdate, employeeTaskUpdate, employeeTaskDetails, deleteEmployeeTask, taskComment, getTaskCommentList, deleteEmployee, bulkDeleteEmployee, bulkDeleteEmployeeTask };
