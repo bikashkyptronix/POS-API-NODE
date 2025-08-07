@@ -29,13 +29,43 @@ export const dealsList = async (req, res, next) => {
 
     // Count total documents
     const totalRecords = await Deal.countDocuments(condition);
-
     // Fetch paginated data
-    const dealsList = await Deal.find(condition)
-      .sort({ createdAt: -1 }) // Sort by latest
-      .skip((pageNumber - 1) * pageSize)
-      .limit(pageSize)
-      .lean(); // faster and returns plain JS objects
+    const dealsList = await Deal.aggregate([
+      { $match: condition },
+      { $sort: { createdAt: -1 } },
+      { $skip: (pageNumber - 1) * pageSize },
+      { $limit: pageSize },
+      {
+        $lookup: {
+          from: "products",               // collection name to join with
+          localField: "item_id",          // field in Deal collection
+          foreignField: "_id",            // matching field in Product collection
+          as: "product_info"
+        }
+      },
+      {
+        $unwind: {
+          path: "$product_info",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          item_id: 1,
+          promocode: 1,
+          item_name: 1,
+          customer_mobile: 1,
+          from_date: 1,
+          to_date: 1,
+          amount_off: 1,
+          minimum_quantity: 1,
+          maximum_quantity: 1,
+          status: 1,
+          product_name: "$product_info.product_name"
+        }
+      }
+    ]);
 
     const results = dealsList.map(data => {
         const from_date = data.from_date
@@ -46,18 +76,19 @@ export const dealsList = async (req, res, next) => {
             ? new Date(data.to_date).toLocaleDateString("en-GB").replace(/\//g, ".")
             : null;
 
-        return { 
-            id: data._id,
-            item_id: data.item_id,
-            name: data.item_name,
-            promocode: data.promocode,
-            mobile: data.customer_mobile,
-            from_date: from_date,
-            to_date: to_date,
-            amount_off: data.amount_off,
-            minimum_quantity: data.minimum_quantity,
-            maximum_quantity: data.maximum_quantity,
-            status: data.status,
+        return {
+          id: data._id,
+          item_id: data.item_id,
+          item_name: data.product_name || "N/A",
+          name: data.item_name,
+          promocode: data.promocode,
+          mobile: data.customer_mobile,
+          from_date,
+          to_date,
+          amount_off: data.amount_off,
+          minimum_quantity: data.minimum_quantity,
+          maximum_quantity: data.maximum_quantity,
+          status: data.status
         };
     });
 
