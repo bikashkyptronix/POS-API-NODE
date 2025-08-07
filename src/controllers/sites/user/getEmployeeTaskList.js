@@ -34,11 +34,47 @@ export const getEmployeeTaskList = async (req, res, next) => {
     }
 
     // Fetch paginated data
-    const employeeTasks = await EmployeeTask.find(condition)
-      .sort({ createdAt: -1 }) // Sort by latest
-      .skip((pageNumber - 1) * pageSize)
-      .limit(pageSize)
-      .lean(); // faster and returns plain JS objects
+    const employeeTasks = await EmployeeTask.aggregate([
+      {
+        $match: condition, // Apply your filter condition
+      },
+      {
+        $sort: { createdAt: -1 },
+      },
+      {
+        $skip: (pageNumber - 1) * pageSize,
+      },
+      {
+        $limit: pageSize,
+      },
+      {
+        $lookup: {
+          from: "users", // collection to join
+          localField: "employee_id", // field from employeetasks
+          foreignField: "_id", // field from users
+          as: "employee_info"
+        }
+      },
+      {
+        $unwind: {
+          path: "$employee_info",
+          preserveNullAndEmptyArrays: true // in case no matching user
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          task_title: 1,
+          employee_id: 1,
+          task_details: 1,
+          task_deadline: 1,
+          task_status: 1,
+          createdAt: 1,
+          updatedAt: 1,
+          "employee_full_name": "$employee_info.full_name" // project employee full name
+        }
+      }
+    ]);
 
     // Optional: format data
     const results = employeeTasks.map(data => {
@@ -47,13 +83,15 @@ export const getEmployeeTaskList = async (req, res, next) => {
           : null;
 
       return {
-          id: data._id,
-          title: data.task_title,
-          task_details: data.task_details,
-          task_deadline: task_deadline,
-          task_status: data.task_status,
-          createdAt: data.createdAt,
-          updatedAt: data.updatedAt,
+        id: data._id,
+        title: data.task_title,
+        employee_id: data.employee_id,
+        employee_name: data.employee_full_name || "N/A",
+        task_details: data.task_details,
+        task_deadline,
+        task_status: data.task_status,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt
       };
     });
 

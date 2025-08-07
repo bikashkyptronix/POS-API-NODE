@@ -48,6 +48,7 @@ export const dealsList = async (req, res, next) => {
 
         return { 
             id: data._id,
+            item_id: data.item_id,
             name: data.item_name,
             promocode: data.promocode,
             mobile: data.customer_mobile,
