@@ -17,7 +17,7 @@ export const productAdd = async (req, res, next) => {
   try {
     const reqBody = req.body;
     const userId = req.userDetails.userId;
-
+   console.log("reqBody=",reqBody); return false;
     const {
       product_name,
       category_id,
