@@ -27,7 +27,7 @@ export const productUpdate = async (req, res, next) => {
       tax_percentage
     } = req.body;
 
-    const imagePath = req.file ? `uploads/products/${req.file.filename}` : null;
+    const imagePath = req.file ? req.file.path : null;
 
     const existingProduct = await Product.findOne({
       _id: productId,
