@@ -13,7 +13,7 @@ productRouter.post(
   "/add",
    validateApiKey,
    validateAccessToken,
-   productImageUpload.single("product_image"),   
+   //productImageUpload.single("product_image"),   
    siteValidation.productValidation.productAdd,
    siteController.productController.productAdd,
 );
