@@ -13,7 +13,20 @@ productRouter.post(
   "/add",
    validateApiKey,
    validateAccessToken,
-   productImageUpload.single("product_image"),   
+    (req, res, next) => {
+    productImageUpload.single("product_image")(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        // A Multer error occurred
+        return res.status(400).json({ success: false, message: err.message });
+      } else if (err) {
+        // An unknown error occurred
+        console.error("Multer error:", err);
+        return res.status(500).json({ success: false, message: err.message });
+      }
+      next();
+    });
+  },
+   //productImageUpload.single("product_image"),   
    siteValidation.productValidation.productAdd,
    siteController.productController.productAdd,
 );
