@@ -13,7 +13,7 @@ productRouter.post(
   "/add",
    validateApiKey,
    validateAccessToken,
-   //productImageUpload.single("product_image"),   
+   productImageUpload.single("product_image"),   
    siteValidation.productValidation.productAdd,
    siteController.productController.productAdd,
 );
@@ -22,7 +22,7 @@ productRouter.post(
   "/update/:id", // Product ID in URL
   validateApiKey,
   validateAccessToken,
-  //productImageUpload.single("product_image"),
+  productImageUpload.single("product_image"),
   siteValidation.productValidation.productUpdate,
   siteController.productController.productUpdate
 );
