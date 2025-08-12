@@ -16,6 +16,20 @@ customerRouter.post(
    siteController.customerController.customerAdd,
 );
 
+customerRouter.get(
+  "/details/:id",  // ID will come from URL
+  validateApiKey,
+  validateAccessToken,
+  siteController.customerController.getCustomerDetails
+);
+
+customerRouter.post(
+  "/update/:id", // Product ID in URL
+  validateApiKey,
+  validateAccessToken,
+  siteController.customerController.getCustomerUpdate
+);
+
 customerRouter.post(
   "/list",
    validateApiKey,
