@@ -77,6 +77,14 @@ commonRouter.get(
   siteController.commonController.getDeviceDetails
 );
 
+commonRouter.post(
+  "/device-update/:id", // Device ID in URL
+  validateApiKey,
+  validateAccessToken,
+  siteValidation.commonValidation.deviceUpdate,
+  siteController.commonController.deviceUpdate
+);
+
 commonRouter.get(
   "/device-delete/:id",  // ID in URL param
   validateApiKey,
