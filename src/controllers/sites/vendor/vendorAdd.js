@@ -29,7 +29,7 @@ export const vendorAdd = async (req, res, next) => {
         permissions,
       } = req.body;
   
-      const userDetails = await userService.getByEmail(reqBody.email);
+      const userDetails = await User.findOne({ email: email }).lean();
       if (userDetails) throw StatusError.badRequest("This email is already registered");
 
       const existingPhoneUser = await User.findOne({ phone });
