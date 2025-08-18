@@ -47,6 +47,16 @@ const fuelSchema = new mongoose.Schema(
       required: true,
       min: 0,
     },
+    ne_cash: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    ne_credit: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

@@ -15,6 +15,8 @@ export const fuelUpdate = async (req, res, next) => {
       premium_credit,
       diesel_cash,
       diesel_credit,
+      ne_cash,
+      ne_credit,
     } = req.body;
 
     // Detect timezone — fallback to 'Asia/Kolkata' (India) if not sent
@@ -31,6 +33,8 @@ export const fuelUpdate = async (req, res, next) => {
       premium_credit,
       diesel_cash,
       diesel_credit,
+      ne_cash,
+      ne_credit,
       status: "active",
       business_id: req.userDetails.business_id || null,
       created_by: userId,

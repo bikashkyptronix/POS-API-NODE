@@ -59,6 +59,20 @@ export const fuelUpdate = celebrate({
       'string.pattern.base': `"price" must be a valid number with up to 2 decimal places`,
       'any.required': `"price" is required`
     }),
+    ne_cash: Joi.string()
+    .pattern(/^\d+(\.\d{1,2})?$/)
+    .required()
+    .messages({
+      'string.pattern.base': `"price" must be a valid number with up to 2 decimal places`,
+      'any.required': `"price" is required`
+    }),
+    ne_credit: Joi.string()
+    .pattern(/^\d+(\.\d{1,2})?$/)
+    .required()
+    .messages({
+      'string.pattern.base': `"price" must be a valid number with up to 2 decimal places`,
+      'any.required': `"price" is required`
+    }),
     created_by: Joi.string().optional().allow(null),
     status: Joi.string().valid("active", "in-active").optional(),
   }),

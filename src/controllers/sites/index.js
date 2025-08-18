@@ -4,6 +4,7 @@ import * as productController from "./product/index.js";
 import * as customerController from "./customer/index.js";
 import * as commonController from "./common/index.js";
 import * as loyaltyController from "./loyalty/index.js";
+import * as vendorController from "./vendor/index.js";
 
 export {
   authController,
@@ -11,5 +12,6 @@ export {
   productController,
   customerController,
   commonController,
-  loyaltyController
+  loyaltyController,
+  vendorController
 };
