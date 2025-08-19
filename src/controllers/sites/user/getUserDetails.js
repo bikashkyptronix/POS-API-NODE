@@ -32,6 +32,7 @@ export const getUserDetails = async (req, res, next) => {
     const result = {
       id: checkUser._id,
       name: checkUser.full_name,
+      log_userId: checkUser.log_userId,
       email: checkUser.email,
       phone: checkUser.phone,
       staff_position: checkUser.staff_position,

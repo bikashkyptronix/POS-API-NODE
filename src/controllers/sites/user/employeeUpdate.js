@@ -21,6 +21,7 @@ export const employeeUpdate = async (req, res, next) => {
     const {
       full_name,
       email,
+      log_userId,
       role,
       staff_position,
       phone,
@@ -45,6 +46,15 @@ export const employeeUpdate = async (req, res, next) => {
       throw StatusError.badRequest("This email is already registered");
     }
 
+    // Check for duplicate log_userId (excluding current user)
+    const existingLogUserId = await User.findOne({
+      log_userId,
+      _id: { $ne: employeeId }
+    });
+    if (existingLogUserId) {
+      throw StatusError.badRequest("This userId is already registered");
+    }
+
     // Check for duplicate phone number (excluding current user)
     const existingPhoneUser = await User.findOne({
       phone,
@@ -57,6 +67,7 @@ export const employeeUpdate = async (req, res, next) => {
     // Update fields
     user.full_name = full_name;
     user.email = email;
+    user.log_userId = log_userId;
     user.role = role;
     user.staff_position = staff_position;
     user.phone = phone;

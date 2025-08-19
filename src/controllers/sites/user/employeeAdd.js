@@ -21,6 +21,7 @@ export const employeeAdd = async (req, res, next) => {
       const {
         full_name,
         email,
+        log_userId,
         password, // plain password from body
         role,
         staff_position,
@@ -33,6 +34,11 @@ export const employeeAdd = async (req, res, next) => {
   
       const userDetails = await userService.getByEmail(reqBody.email);
       if (userDetails) throw StatusError.badRequest("This email is already registered");
+
+      const existingLogUserId = await User.findOne({ log_userId });
+      if (existingLogUserId) {
+        throw StatusError.badRequest("This userId is already registered");
+      }
 
       const existingPhoneUser = await User.findOne({ phone });
       if (existingPhoneUser) {
@@ -48,6 +54,7 @@ export const employeeAdd = async (req, res, next) => {
       const newUser = new User({
         full_name,
         email,
+        log_userId,
         password_hash,
         role,
         staff_position,

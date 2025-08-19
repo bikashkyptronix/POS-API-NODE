@@ -14,6 +14,11 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+    log_userId: {
+      type: String,
+      unique: true,
+      default: null
+    },
     password_hash: {
       type: String,
       required: true,

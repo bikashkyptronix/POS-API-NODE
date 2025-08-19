@@ -14,9 +14,16 @@ export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Get user by email using Mongoose
-    const userDetails = await User.findOne({ email });
-    if (!userDetails) throw StatusError.badRequest({ email: "email does not exist" });
+    // Check if value exists in either email or log_userId
+    const userDetails = await User.findOne({
+      $or: [{ email }, { log_userId: email }]
+    });
+
+    if (!userDetails) {
+      throw StatusError.badRequest({
+        email: "Email or Log User ID does not exist"
+      });
+    }
 
     // 2. Compare password
     const isSame = await bcrypt.compare(password, userDetails.password_hash);

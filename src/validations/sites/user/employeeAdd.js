@@ -5,6 +5,13 @@ export const employeeAdd = celebrate({
   body: Joi.object({
     full_name: Joi.string().trim().required(),
     email: Joi.string().email().lowercase().trim().required(),
+    log_userId: Joi.string()
+      .trim()
+      .pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/)
+      .message(
+        "log_userId must be at least 6 characters long, include at least one letter, one number, and one special character"
+      )
+      .required(),
     password: Joi.string().min(6).required(), // Plain password from request body
     role: Joi.string().valid("staff").required(),
     staff_position: Joi.string().optional().allow(null, ''),

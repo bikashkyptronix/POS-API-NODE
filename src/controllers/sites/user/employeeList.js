@@ -47,6 +47,7 @@ export const employeeList = async (req, res, next) => {
         id: data._id,
         name: data.full_name,
         email: data.email,
+        log_userId: data.log_userId,
         mobile: data.phone,
         staff_position: data.staff_position,
         dob: dob,
