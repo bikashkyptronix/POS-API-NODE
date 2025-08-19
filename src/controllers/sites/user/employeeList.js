@@ -15,7 +15,7 @@ import { MAIL_TEMPLATE } from "../../../utils/constants.js";
  */
 export const employeeList = async (req, res, next) => {
   try {
-    const { page = 1, limit = 2 } = req.body;
+    const { page = 1, limit = 2, search_text = '' } = req.body;
 
     const pageNumber = parseInt(page);
     const pageSize = parseInt(limit);
@@ -26,6 +26,11 @@ export const employeeList = async (req, res, next) => {
       role: "staff",
       owner_business_id: req.userDetails.business_id,
     };
+
+    // Add search condition if search_text is provided
+    if (search_text && search_text.trim() !== '') {
+      condition.full_name = { $regex: search_text, $options: 'i' }; // Case-insensitive partial match
+    }
 
     // Count total documents
     const totalRecords = await User.countDocuments(condition);
