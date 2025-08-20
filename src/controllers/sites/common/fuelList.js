@@ -56,6 +56,8 @@ export const fuelList = async (req, res, next) => {
             premium_credit: data.premium_credit,
             diesel_cash: data.diesel_cash,
             diesel_credit: data.diesel_credit,
+            ne_cash: data.ne_cash,
+            ne_credit: data.ne_credit,
             date: createdAt.format("DD.MM.YYYY"),      // 18.07.2025
             time: createdAt.format("hh:mm A"),          // 10:15 AM/PM
             status: data.status,
