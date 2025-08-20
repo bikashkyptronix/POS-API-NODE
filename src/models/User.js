@@ -46,6 +46,11 @@ const userSchema = new mongoose.Schema(
       ref: "Business",
       default: null,
     },
+    supplier_choose_cat_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      default: null,
+    },
     phone: {
       type: String,
       trim: true,

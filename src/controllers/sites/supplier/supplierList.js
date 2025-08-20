@@ -7,13 +7,13 @@ import { User } from "../../../models/User.js";
 import { MAIL_TEMPLATE } from "../../../utils/constants.js";
 
 /**
- * employeeList
- * User can get employeeList with details
+ * supplierList
+ * User can get supplierList with details
  * @param req
  * @param res
  * @param next
  */
-export const vendorList = async (req, res, next) => {
+export const supplierList = async (req, res, next) => {
   try {
     const { page = 1, limit = 2, search_text = '' } = req.body;
 
@@ -23,27 +23,26 @@ export const vendorList = async (req, res, next) => {
     // Optional: add search/filter conditions
     let condition = {
       status: "active",
-      role: "vendor",
+      role: "supplier",
       owner_business_id: req.userDetails.business_id,
     };
 
-    // Add search condition if search_text is provided
     if (search_text && search_text.trim() !== '') {
       condition.full_name = { $regex: search_text, $options: 'i' }; // Case-insensitive partial match
     }
-    
+
     // Count total documents
     const totalRecords = await User.countDocuments(condition);
 
     // Fetch paginated data
-    const vendors = await User.find(condition)
+    const supplierList = await User.find(condition)
       .sort({ createdAt: -1 }) // Sort by latest
       .skip((pageNumber - 1) * pageSize)
       .limit(pageSize)
       .lean(); // faster and returns plain JS objects
 
     // Optional: format data
-    const results = vendors.map(data => {
+    const results = supplierList.map(data => {
     return {
         id: data._id,
         name: data.full_name,

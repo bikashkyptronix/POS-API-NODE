@@ -6,6 +6,7 @@ import * as customerValidation from "./customer/index.js";
 import * as commonValidation from "./common/index.js";
 import * as loyaltyValidation from "./loyalty/index.js";
 import * as vendorValidation from "./vendor/index.js";
+import * as supplierValidation from "./supplier/index.js";
 
 
 export {
@@ -17,4 +18,5 @@ export {
   commonValidation,
   loyaltyValidation,
   vendorValidation,
+  supplierValidation,
 };
