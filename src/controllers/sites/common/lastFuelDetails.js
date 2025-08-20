@@ -24,6 +24,8 @@ export const lastFuelDetails = async (req, res, next) => {
       premium_credit: getFuel.premium_credit,
       diesel_cash: getFuel.diesel_cash,
       diesel_credit: getFuel.diesel_credit,
+      ne_cash: getFuel.ne_cash,
+      ne_credit: getFuel.ne_credit,
       status: getFuel.status,
       created_at: getFuel.createdAt,
       updated_at: getFuel.updatedAt
