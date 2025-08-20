@@ -6,14 +6,6 @@ import { siteValidation } from "../../validations/index.js";
 const vendorRouter = Router();
 
 vendorRouter.post(
-  "/test",
-   validateApiKey,
-  // validateAccessToken,
-  siteValidation.userValidation.testDatacheck,
-  siteController.userController.test,
-);
-
-vendorRouter.post(
   "/add",
   validateApiKey,
   validateAccessToken,

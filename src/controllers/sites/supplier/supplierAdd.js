@@ -22,7 +22,7 @@ export const supplierAdd = async (req, res, next) => {
       const {
         full_name,
         email,
-        password,
+        //password,
         role,
         phone,
         supplier_choose_cat_id,
@@ -53,13 +53,13 @@ export const supplierAdd = async (req, res, next) => {
       // Hash password (if using plain password)
       const bcrypt = await import("bcrypt");
       const saltRounds = 10;
-      const password_hash = await bcrypt.hash(password, saltRounds);
+      //const password_hash = await bcrypt.hash(password, saltRounds);
   
       // Create and save user
       const newUser = new User({
         full_name,
         email,
-        password_hash,
+        //password_hash,
         role,
         owner_business_id: req.userDetails.business_id,
         phone,

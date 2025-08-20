@@ -5,7 +5,7 @@ export const supplierAdd = celebrate({
   body: Joi.object({
     full_name: Joi.string().trim().required(),
     email: Joi.string().email().lowercase().trim().required(),
-    password: Joi.string().min(6).required(), // Plain password from request body
+    //password: Joi.string().min(6).required(), // Plain password from request body
     role: Joi.string().valid("supplier").required(),
     phone: Joi.string().optional().allow(""), 
     supplier_choose_cat_id: Joi.string()
