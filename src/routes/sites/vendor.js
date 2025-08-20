@@ -14,7 +14,7 @@ vendorRouter.post(
 );
 
 vendorRouter.post(
-  "/vendor-add",
+  "/add",
   validateApiKey,
   validateAccessToken,
   siteValidation.vendorValidation.vendorAdd,
