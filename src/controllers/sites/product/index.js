@@ -1,8 +1,9 @@
 import { productAdd } from "./productAdd.js";
 import { productList } from "./productList.js";
-import { productUpdate } from "./productUpdate.js";
+import { productUpdate } from "./productUpdate.js"; 
 import { getProductDetails } from "./getProductDetails.js";
 import { deleteProduct } from "./deleteProduct.js";
+import { deleteProductImage } from "./deleteProductImage.js";
 
 export {
   productAdd,
@@ -10,4 +11,5 @@ export {
   productUpdate,
   getProductDetails,
   deleteProduct,
+  deleteProductImage,
 };

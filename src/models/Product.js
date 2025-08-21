@@ -2,73 +2,38 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
-    product_name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    category_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-      required: false, // You can set `true` if category is mandatory
-    },
-    product_sku: {
-      type: String,
-      trim: true,
-      unique: true,
-      sparse: true, // Allows multiple nulls
-    },
-    product_quantity: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    for_sale: {
-      type: String,
-      enum: ["yes", "no"],
-      default: "no",
-    },
-    purchase_price: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    selling_price: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    tax_percentage: {
-      type: Number,
-      default: 0,
-      min: 0,
-      max: 100,
-    },
-    business_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Business",
-      default: null,
-    },
-    status: {
-      type: String,
-      enum: ["active", "inactive"],
-      default: "active",
-    },
-    product_image: {
-      type: String,
-      trim: true,
-      default: null,
-    },
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    updated_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    stock_code: { type: String, required: true, trim: true },
+    qty_on_hand: { type: Number, required: true, min: 0 },
+    qty_cases: { type: Number, required: true, min: 0 },
+    product_quantity: { type: Number, default: 0, min: 0 },
+    product_name: { type: String, required: true, trim: true },
+    product_size: { type: String, required: true, trim: true },
+
+    selected_vendor_id: { type: mongoose.Schema.Types.ObjectId, ref: "Vendor", default: null },
+    selected_category_id: { type: mongoose.Schema.Types.ObjectId, ref: "Category", default: null },
+    selected_supplier_id: { type: mongoose.Schema.Types.ObjectId, ref: "Supplier", default: null },
+
+    product_sku: { type: String, trim: true, unique: true, sparse: true },
+
+    product_price: { type: Number, required: true, min: 0 },
+    product_avg_price: { type: Number, required: true, min: 0 },
+    product_latest_cost: { type: Number, required: true, min: 0 },
+    product_margin: { type: Number, default: 0, min: 0 },
+    product_markup: { type: Number, default: 0, min: 0 },
+    tax_percentage: { type: Number, default: 0, min: 0, max: 100 },
+
+    unit_per_case: { type: String, required: true, trim: true },
+    case_cost_total: { type: Number, required: true, min: 0 },
+
+    reorder_value: { type: Number, default: 0, min: 0 },
+    reorder_point: { type: Number, default: 0, min: 0 },
+    product_rank: { type: Number, default: 0, min: 0 },
+
+    business_id: { type: mongoose.Schema.Types.ObjectId, ref: "Business", default: null },
+    status: { type: String, enum: ["active", "inactive"], default: "active" },
+
+    created_by: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    updated_by: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },

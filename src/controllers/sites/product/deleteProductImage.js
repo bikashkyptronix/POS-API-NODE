@@ -1,11 +1,12 @@
 import { Product } from "../../../models/Product.js";
 import { ProductImage } from "../../../models/ProductImage.js";
 
-export const deleteProduct = async (req, res, next) => {
+export const deleteProductImage = async (req, res, next) => {
   try {
     const productId = req.params.id;
+    const imageId = req.params.imageId;
 
-    // 1. Find product by ID & business
+    // 1. Find product by ID & business (authorization check)
     const product = await Product.findOne({
       _id: productId,
       business_id: req.userDetails.business_id
@@ -15,16 +16,18 @@ export const deleteProduct = async (req, res, next) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // 2. Soft delete product (status -> inactive)
-    product.status = "inactive";
-    product.updated_by = req.userDetails.userId;
-    await product.save();
+    // 2. Delete only the requested image
+    const deletedImage = await ProductImage.findOneAndDelete({
+      _id: imageId,
+      product_id: productId
+    });
 
-    // 3. Hard delete related images
-    await ProductImage.deleteMany({ product_id: productId });
+    if (!deletedImage) {
+      return res.status(404).json({ message: "Image not found" });
+    }
 
     return res.ok({
-      message: "Product deleted successfully",
+      message: "Product image deleted successfully",
     });
 
   } catch (error) {

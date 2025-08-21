@@ -9,23 +9,41 @@ const productRouter = Router();
 const storage = multer.memoryStorage(); // or diskStorage if saving to file system
 const upload = multer({ storage });
 
+// productRouter.post(
+//   "/add",
+//    validateApiKey,
+//    validateAccessToken,
+//    productImageUpload.single("product_image"),   
+//    siteValidation.productValidation.productAdd,
+//    siteController.productController.productAdd,
+// );
+
 productRouter.post(
   "/add",
-   validateApiKey,
-   validateAccessToken,
-   productImageUpload.single("product_image"),   
-   siteValidation.productValidation.productAdd,
-   siteController.productController.productAdd,
+  validateApiKey,
+  validateAccessToken,
+  productImageUpload.array("product_images", 5), // multiple images
+  siteValidation.productValidation.productAdd,
+  siteController.productController.productAdd,
 );
 
 productRouter.post(
-  "/update/:id", // Product ID in URL
+  "/update/:id",
   validateApiKey,
   validateAccessToken,
-  productImageUpload.single("product_image"),
+  productImageUpload.array("product_images", 5), // multiple images like add
   siteValidation.productValidation.productUpdate,
   siteController.productController.productUpdate
 );
+
+// productRouter.post(
+//   "/update/:id", // Product ID in URL
+//   validateApiKey,
+//   validateAccessToken,
+//   productImageUpload.single("product_image"),
+//   siteValidation.productValidation.productUpdate,
+//   siteController.productController.productUpdate
+// );
 
 productRouter.get(
   "/details/:id",  // ID will come from URL
@@ -39,6 +57,13 @@ productRouter.get(
   validateApiKey,
   validateAccessToken,
   siteController.productController.deleteProduct
+);
+
+productRouter.get(
+  "/image-delete/:id/:imageId",  // ID in URL param
+  validateApiKey,
+  validateAccessToken,
+  siteController.productController.deleteProductImage
 );
 
 productRouter.post(
