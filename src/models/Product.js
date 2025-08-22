@@ -9,9 +9,9 @@ const productSchema = new mongoose.Schema(
     product_name: { type: String, required: true, trim: true },
     product_size: { type: String, required: true, trim: true },
 
-    selected_vendor_id: { type: mongoose.Schema.Types.ObjectId, ref: "Vendor", default: null },
+    selected_vendor_id: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
     selected_category_id: { type: mongoose.Schema.Types.ObjectId, ref: "Category", default: null },
-    selected_supplier_id: { type: mongoose.Schema.Types.ObjectId, ref: "Supplier", default: null },
+    selected_supplier_id: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
 
     product_sku: { type: String, trim: true, unique: true, sparse: true },
 

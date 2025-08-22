@@ -36,22 +36,38 @@ export const productList = async (req, res, next) => {
 
     // Fetch paginated data
     const getProducts = await Product.find(condition)
-      .sort({ createdAt: -1 }) // Sort by latest
-      .skip((pageNumber - 1) * pageSize)
-      .limit(pageSize)
-      .lean();
+    .sort({ createdAt: -1 })
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize)
+    .populate("selected_category_id", "category_name")   // only fetch category_name
+    .populate("selected_vendor_id", "full_name role")        // only fetch name + role
+    .populate("selected_supplier_id", "full_name role")      // only fetch name + role
+    .lean();
+
 
     // Format result
     const results = getProducts.map(data => ({
       id: data._id,
       name: data.product_name,
-      product_sku: data.product_sku,
-      quantity: data.product_quantity,
-      purchase_price: data.purchase_price,
-      selling_price: data.selling_price,
-      tax_percentage: data.tax_percentage,
-      status: data.status,
+      stock_code: data.stock_code || null,
+      product_rank: data.product_rank || null,
+      product_sku: data.product_sku || null,
+      qty_on_hand: data.qty_on_hand || null,
+      qty_cases: data.qty_cases || null,
+      product_size: data.product_size || null,
+      product_price: data.product_price || null,
+      product_avg_price: data.product_avg_price || null,
+      product_latest_cost: data.product_latest_cost || null,
+      quantity: data.product_quantity || null,
+      product_margin: data.product_margin || null,
+      product_markup: data.product_markup || null,
+      tax_percentage: data.tax_percentage || null,
+      status: data.status || null,
+      category_name: data.selected_category_id?.category_name || null,
+      vendor_name: data.selected_vendor_id?.full_name || null,
+      supplier_name: data.selected_supplier_id?.full_name || null,
     }));
+
 
     return res.ok({
       page: pageNumber,
