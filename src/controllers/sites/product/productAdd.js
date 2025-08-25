@@ -6,6 +6,16 @@ export const productAdd = async (req, res, next) => {
   try {
     const userId = req.userDetails.userId;
 
+    if (req.body.stock_code) {
+        const duplicate = await Product.findOne({
+          stock_code: req.body.stock_code
+        });
+
+        if (duplicate) {
+            return res.status(400).json({ message: "Product stock code already exists" });
+        }
+    }
+
     // Save Product
     const newProduct = new Product({
       ...req.body,

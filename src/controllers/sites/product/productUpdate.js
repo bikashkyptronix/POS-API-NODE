@@ -18,6 +18,17 @@ export const productUpdate = async (req, res, next) => {
   try {
     const productId = req.params.id;
 
+    if (req.body.stock_code) {
+      const duplicate = await Product.findOne({
+        stock_code: req.body.stock_code,
+        _id: { $ne: productId }, // exclude current record
+      });
+
+      if (duplicate) {
+        return res.status(400).json({ message: "Stock code already exists" });
+      }
+    }
+
     // 1. Find product by ID & business_id
     const existingProduct = await Product.findOne({
       _id: productId,
@@ -68,8 +79,30 @@ export const productUpdate = async (req, res, next) => {
       reorder_value: req.body.reorder_value || 0,
       reorder_point: req.body.reorder_point || 0,
       product_rank: req.body.product_rank || 0,
-
       status: req.body.status || existingProduct.status,
+
+      // New Boolean fields
+      don_not_auto_update: req.body.don_not_auto_update || false,
+      add_to_shortcut_key: req.body.add_to_shortcut_key || false,
+      do_not_manual_discount: req.body.do_not_manual_discount || false,
+      do_not_show_to_webstore: req.body.do_not_show_to_webstore || false,
+      ebt_eligible: req.body.ebt_eligible || false,
+      do_not_track_inventory: req.body.do_not_track_inventory || false,
+      close_out_item: req.body.close_out_item || false,
+      exclude_from_promotions_discount: req.body.exclude_from_promotions_discount || false,
+      hide_inventory: req.body.hide_inventory || false,
+
+      // New Optional fields
+      shortcut_key_color: req.body.shortcut_key_color || null,
+      product_default_quantity: req.body.product_default_quantity || 0,
+      product_min_price: req.body.product_min_price || null,
+      remind_date: req.body.remind_date || null,
+      notes: req.body.notes || null,
+      tags: req.body.tags || null,
+      points_multiplier: req.body.points_multiplier || null,
+      points_required: req.body.points_required || null,
+      item_type: req.body.item_type || null,
+
       updated_by: req.userDetails.userId,
     };
 

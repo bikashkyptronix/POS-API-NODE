@@ -125,6 +125,27 @@ export const productUpdate = celebrate({
       .allow(null, ""),
     status: Joi.string()
       .valid("active", "inactive")
-      .optional()
+      .optional(),
+    // Boolean flags
+    don_not_auto_update: Joi.boolean().optional(),
+    add_to_shortcut_key: Joi.boolean().optional(),
+    do_not_manual_discount: Joi.boolean().optional(),
+    do_not_show_to_webstore: Joi.boolean().optional(),
+    ebt_eligible: Joi.boolean().optional(),
+    do_not_track_inventory: Joi.boolean().optional(),
+    close_out_item: Joi.boolean().optional(),
+    exclude_from_promotions_discount: Joi.boolean().optional(),
+    hide_inventory: Joi.boolean().optional(),
+
+    // Optional fields
+    shortcut_key_color: Joi.string().optional().allow(null, ""),
+    product_default_quantity: Joi.number().min(0).optional().allow(null, ""),
+    product_min_price: Joi.number().min(0).optional().allow(null, ""),
+    remind_date: Joi.string().optional().allow(null, ""),
+    notes: Joi.string().optional().allow(null, ""),
+    tags: Joi.string().optional().allow(null, ""),
+    points_multiplier: Joi.string().optional().allow(null, ""),
+    points_required: Joi.number().min(0).optional().allow(null, ""),
+    item_type: Joi.string().optional().allow(null, ""),  
   }).prefs({ convert: true }) // Enables type coercion from strings (e.g., from form-data)
 });
