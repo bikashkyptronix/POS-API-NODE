@@ -29,7 +29,7 @@ export const getGroupDetail = async (req, res, next) => {
       products: checkGroup.products.map(p => ({
         id: p._id,
         name: p.product_name
-      })), // return product names
+      })), 
       createdBy: createdUserName,
       status: checkGroup.status,
       created_at: checkGroup.createdAt,
