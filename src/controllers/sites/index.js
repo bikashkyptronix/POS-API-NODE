@@ -7,6 +7,7 @@ import * as loyaltyController from "./loyalty/index.js";
 import * as vendorController from "./vendor/index.js";
 import * as supplierController from "./supplier/index.js";
 import * as dailyController from "./daily/index.js";
+import * as groupController from "./group/index.js";
 
 export {
   authController,
@@ -17,5 +18,6 @@ export {
   loyaltyController,
   vendorController,
   supplierController,
-  dailyController
+  dailyController,
+  groupController
 };

@@ -8,6 +8,7 @@ import * as loyaltyValidation from "./loyalty/index.js";
 import * as vendorValidation from "./vendor/index.js";
 import * as supplierValidation from "./supplier/index.js";
 import * as dailyValidation from "./daily/index.js";
+import * as groupValidation from "./group/index.js";
 
 
 export {
@@ -20,5 +21,6 @@ export {
   loyaltyValidation,
   vendorValidation,
   supplierValidation,
-  dailyValidation
+  dailyValidation,
+  groupValidation
 };
